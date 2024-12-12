@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -29,11 +30,25 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        // Disable movement if in the Battle Scene
+        if (SceneManager.GetActiveScene().name == "BattleScene1")
+        {
+            // Stop movement when entering the Battle Scene
+            StopMovement();
+            SetIdleAnimation();
+            return; // Prevent movement
+        }
         PlayerInput();
     }
 
     private void FixedUpdate()
     {
+        // Stop movement if in the Battle Scene
+        if (SceneManager.GetActiveScene().name == "BattleScene1")
+        {
+            StopMovement();
+            return;
+        }
         AdjustPlayerFacingDirections();
         Move();
     }
@@ -66,5 +81,23 @@ public class PlayerController : MonoBehaviour
             // Moving right
             mySpriteRenderer.flipX = false;
         }
+    }
+
+    // Helper function to stop movement
+    private void StopMovement()
+    {
+        // Optional: Add logic if you're using Rigidbody2D for movement
+        rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.velocity = Vector2.zero; // Stop Rigidbody movement
+        }
+    }
+
+    private void SetIdleAnimation()
+    {
+        myAnimator = GetComponent<Animator>();
+        myAnimator.SetFloat("moveX", 0f); // Assuming "Speed" controls transition between idle and movement
+        myAnimator.SetFloat("moveY", 0f);
     }
 }
