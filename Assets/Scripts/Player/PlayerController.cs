@@ -99,5 +99,6 @@ public class PlayerController : MonoBehaviour
         myAnimator = GetComponent<Animator>();
         myAnimator.SetFloat("moveX", 0f); // Assuming "Speed" controls transition between idle and movement
         myAnimator.SetFloat("moveY", 0f);
+        mySpriteRenderer.flipX = false;
     }
 }
