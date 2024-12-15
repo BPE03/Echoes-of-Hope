@@ -1213,7 +1213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerBattlePosition: {x: -4, y: 2.6, z: 0}
   enemyPrefabs:
-  - {fileID: 8052666122358778753, guid: bfe954ad982fd824b82c286c4051a2f5, type: 3}
+  - {fileID: 8052666122358778753, guid: 877bdd1cea57d4949be75cc38fe8ee80, type: 3}
   spawnPoints:
   - {fileID: 108289411}
   - {fileID: 384010268}
