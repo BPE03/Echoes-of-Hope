@@ -11,18 +11,34 @@ public class PlayerStats : MonoBehaviour
     public int defense = 5;
     public int level = 1;
     public int experience = 0;
+    public int currentHealth;
+    void Start()
+    {
+        currentHealth = health;
+    }
 
     // Optionally add methods to modify stats
     public void TakeDamage(int damage)
     {
-        health -= damage;
-        health = Mathf.Max(0, health); // Ensure health doesn't go below 0
-        Debug.Log($"Player took {damage} damage. Current health: {health}");
+        currentHealth -= damage;
+        currentHealth = Mathf.Max(0, currentHealth); // Ensure health doesn't go below 0
+        Debug.Log($"Player took {damage} damage. Current health: {currentHealth}");
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Debug.Log("Player is defeated!");
+        // Add player death logic here
     }
 
     public void Heal(int amount)
     {
-        health += amount;
-        Debug.Log($"Player healed {amount}. Current health: {health}");
+        currentHealth += amount;
+        Debug.Log($"Player healed {amount}. Current health: {currentHealth}");
     }
 }
