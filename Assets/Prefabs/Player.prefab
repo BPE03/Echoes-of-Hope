@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 3794139522559593538}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -217,7 +217,11 @@ MonoBehaviour:
   defense: 5
   level: 1
   experience: 0
+  criticalChance: 0.2
+  criticalDamage: 2
   currentHealth: 0
+  temporaryDefense: 0
+  totalDefense: 0
 --- !u!114 &3794139522559593538
 MonoBehaviour:
   m_ObjectHideFlags: 0
