@@ -12,9 +12,21 @@ public class PlayerStats : MonoBehaviour
     public int level = 1;
     public int experience = 0;
     public int currentHealth;
+
+    private const string HEALTH_KEY = "PlayerHealth"; // Key untuk menyimpan health di PlayerPrefs
+
     void Start()
     {
-        currentHealth = health;
+        // Load saved health saat game dimulai, jika ada
+        if (PlayerPrefs.HasKey(HEALTH_KEY))
+        {
+            currentHealth = PlayerPrefs.GetInt(HEALTH_KEY);
+            Debug.Log($"Health Loaded: {currentHealth}");
+        }
+        else
+        {
+            currentHealth = health; // Default health
+        }
     }
 
     // Optionally add methods to modify stats
@@ -39,6 +51,7 @@ public class PlayerStats : MonoBehaviour
     public void Heal(int amount)
     {
         currentHealth += amount;
+        currentHealth = Mathf.Min(health, currentHealth); // Ensure health doesn't exceed max health
         Debug.Log($"Player healed {amount}. Current health: {currentHealth}");
     }
 
@@ -46,5 +59,14 @@ public class PlayerStats : MonoBehaviour
     {
         experience += amount;
         Debug.Log($"Player gained {amount} Experience");
+    }
+
+    // Fungsi untuk menyimpan health pemain
+    public void SaveHealth()
+    {
+        Debug.Log($"Saving Health: {currentHealth}");
+        PlayerPrefs.SetInt(HEALTH_KEY, currentHealth);
+        PlayerPrefs.Save();
+        Debug.Log($"Health Saved: {currentHealth}");
     }
 }

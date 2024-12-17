@@ -187,6 +187,8 @@ public class BattleManager : MonoBehaviour
         if (state != BattleState.PLAYER_TURN) return;
 
         Debug.Log("Player fled!");
+        PlayerPrefs.SetInt("PlayerHealth", playerStats.currentHealth);
+        PlayerPrefs.Save();
         SceneManager.LoadScene("SampleScene"); // Exit to overworld
         return;
     }
