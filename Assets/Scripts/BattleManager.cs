@@ -79,6 +79,7 @@ public class BattleManager : MonoBehaviour
 
         // Transition to the player's turn after setup
         state = BattleState.PLAYER_TURN;
+        selectedEnemy = null;
 
         // Call a function to handle the player's turn
         PlayerTurn();
@@ -86,27 +87,19 @@ public class BattleManager : MonoBehaviour
 
     void PlayerTurn()
     {
-        // Deselect previous enemy
-        foreach (GameObject e in activeEnemies)
-        {
-            e.GetComponent<EnemySelection>().HighlightEnemy(false);
-        }
         Debug.Log("Player's Turn! Choose an action.");
-        selectedEnemy = null;
     }
     IEnumerator EnemyTurn()
     {
         Debug.Log("Enemy's Turn!");
 
         yield return new WaitForSeconds(1);
-        Debug.Log("Number of active enemies: " + activeEnemies.Count);
         // Make each active enemy attack the player
         foreach (GameObject enemy in activeEnemies)
         {
             EnemyStats enemyStats = enemy.GetComponent<EnemyStats>();
-            playerStats.TakeDamage(enemyStats.attack);
             Debug.Log(enemy.name + " attacks!");
-            Debug.Log($"Player took {enemyStats.attack} damage! Health left: {playerStats.currentHealth}");
+            playerStats.TakeDamage(enemyStats.attack - playerStats.defense);
 
             yield return new WaitForSeconds(1); // Wait between attacks
         }
@@ -144,7 +137,7 @@ public class BattleManager : MonoBehaviour
         // Deal damage to the selected enemy
         EnemyStats enemyStats = selectedEnemy.GetComponent<EnemyStats>();
         Debug.Log("Player attacks!");
-        enemyStats.TakeDamage(playerStats.attack);
+        enemyStats.TakeDamage(playerStats.attack - enemyStats.defense);
 
         if (enemyStats.currentHealth <= 0)
         {

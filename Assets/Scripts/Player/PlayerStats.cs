@@ -20,6 +20,10 @@ public class PlayerStats : MonoBehaviour
     // Optionally add methods to modify stats
     public void TakeDamage(int damage)
     {
+        if(damage <= 0)
+        {
+            damage = 1;
+        }
         currentHealth -= damage;
         currentHealth = Mathf.Max(0, currentHealth); // Ensure health doesn't go below 0
         Debug.Log($"Player took {damage} damage. Current health: {currentHealth}");
