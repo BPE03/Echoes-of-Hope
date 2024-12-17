@@ -109,13 +109,4 @@ public class PlayerStats : MonoBehaviour
         PlayerPrefs.Save();
         Debug.Log($"Health Saved: {currentHealth}");
     }
-
-    // Fungsi untuk menyimpan health pemain
-    public void SaveHealth()
-    {
-        Debug.Log($"Saving Health: {currentHealth}");
-        PlayerPrefs.SetInt(HEALTH_KEY, currentHealth);
-        PlayerPrefs.Save();
-        Debug.Log($"Health Saved: {currentHealth}");
-    }
 }
