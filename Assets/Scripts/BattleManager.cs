@@ -137,7 +137,14 @@ public class BattleManager : MonoBehaviour
         // Deal damage to the selected enemy
         EnemyStats enemyStats = selectedEnemy.GetComponent<EnemyStats>();
         Debug.Log("Player attacks!");
-        enemyStats.TakeDamage(playerStats.attack);
+        bool isCritical = Random.value < playerStats.criticalChance; // Random.value gives a value between 0.0 and 1.0
+        int finalDamage = playerStats.attack;
+        if (isCritical)
+        {
+            finalDamage = Mathf.RoundToInt(playerStats.attack * playerStats.criticalDamage);
+            Debug.Log("CRITICAL HIT!");
+        }
+        enemyStats.TakeDamage(finalDamage);
 
         if (enemyStats.currentHealth <= 0)
         {

@@ -12,6 +12,9 @@ public class PlayerStats : MonoBehaviour
     public int level = 1;
     public int experience = 0;
 
+    public float criticalChance = 0.2f; // 20% chance for a critical hit
+    public float criticalDamage = 2.0f; // Critical hits deal 2x damage
+
     public int currentHealth;
     public int temporaryDefense = 0;
     public int totalDefense = 0;

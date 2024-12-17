@@ -21,13 +21,14 @@ public class EnemyStats : MonoBehaviour
     // Optionally add methods to modify stats
     public void TakeDamage(int damage)
     {
-        if(damage <= 0)
+        int totalDamage = damage - defense;
+        if(totalDamage <= 0)
         {
-            damage = 1;
+            totalDamage = 1;
         }
-        currentHealth -= damage;
+        currentHealth -= totalDamage;
         currentHealth = Mathf.Max(0, currentHealth); // Ensure health doesn't go below 0
-        Debug.Log($"Enemy took {damage} damage!. Current health: {currentHealth}");
+        Debug.Log($"Enemy took {totalDamage} damage!. Current health: {currentHealth}");
         if (currentHealth <= 0)
         {
             Die();
