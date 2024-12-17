@@ -41,4 +41,10 @@ public class PlayerStats : MonoBehaviour
         currentHealth += amount;
         Debug.Log($"Player healed {amount}. Current health: {currentHealth}");
     }
+
+    public void GainExp(int amount)
+    {
+        experience += amount;
+        Debug.Log($"Player gained {amount} Experience");
+    }
 }

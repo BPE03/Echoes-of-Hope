@@ -2314,7 +2314,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1371880114}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff837e1a1d3c88a4789fb1142999a8fa, type: 3}
   m_Name: 
@@ -2353,8 +2353,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04f1574436b561e45a92337d5c986e02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 0}
-  player: {fileID: 0}
+  player: {fileID: 8561946590434105690, guid: 177622066aa409f42ae83dd8e2a0109d, type: 3}
+  playerBattlePosition: {x: -4, y: 2.5, z: 0}
+  activeEnemies: []
+  enemyPrefabs:
+  - {fileID: 8052666122358778753, guid: 877bdd1cea57d4949be75cc38fe8ee80, type: 3}
+  spawnPoints:
+  - {fileID: 108289411}
+  - {fileID: 384010268}
+  - {fileID: 1604796028}
+  playerStats: {fileID: 0}
   state: 0
 --- !u!1 &1604796027
 GameObject:

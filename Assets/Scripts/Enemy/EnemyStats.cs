@@ -11,7 +11,7 @@ public class EnemyStats : MonoBehaviour
     public int defense = 0;
     public int level = 0;
     public int experience = 0;
-    public int currentHealth;
+    public int currentHealth = 0;
 
     void Start()
     {
@@ -23,7 +23,7 @@ public class EnemyStats : MonoBehaviour
     {
         currentHealth -= damage;
         currentHealth = Mathf.Max(0, currentHealth); // Ensure health doesn't go below 0
-        Debug.Log($"Enemy took {damage} damage!. Current health: {health}");
+        Debug.Log($"Enemy took {damage} damage!. Current health: {currentHealth}");
         if (currentHealth <= 0)
         {
             Die();
