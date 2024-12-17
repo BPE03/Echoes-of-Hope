@@ -99,7 +99,7 @@ public class BattleManager : MonoBehaviour
         {
             EnemyStats enemyStats = enemy.GetComponent<EnemyStats>();
             Debug.Log(enemy.name + " attacks!");
-            playerStats.TakeDamage(enemyStats.attack - playerStats.defense);
+            playerStats.TakeDamage(enemyStats.attack);
 
             yield return new WaitForSeconds(1); // Wait between attacks
         }
@@ -137,7 +137,7 @@ public class BattleManager : MonoBehaviour
         // Deal damage to the selected enemy
         EnemyStats enemyStats = selectedEnemy.GetComponent<EnemyStats>();
         Debug.Log("Player attacks!");
-        enemyStats.TakeDamage(playerStats.attack - enemyStats.defense);
+        enemyStats.TakeDamage(playerStats.attack);
 
         if (enemyStats.currentHealth <= 0)
         {
