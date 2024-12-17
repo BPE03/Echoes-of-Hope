@@ -16,11 +16,23 @@ public class PlayerStats : MonoBehaviour
     public float criticalDamage = 2.0f; // Critical hits deal 2x damage
 
     public int currentHealth;
+
+    private const string HEALTH_KEY = "PlayerHealth"; // Key untuk menyimpan health di PlayerPrefs
+
     public int temporaryDefense = 0;
     public int totalDefense = 0;
     void Start()
     {
-        currentHealth = health;
+        // Load saved health saat game dimulai, jika ada
+        if (PlayerPrefs.HasKey(HEALTH_KEY))
+        {
+            currentHealth = PlayerPrefs.GetInt(HEALTH_KEY);
+            Debug.Log($"Health Loaded: {currentHealth}");
+        }
+        else
+        {
+            currentHealth = health; // Default health
+        }
     }
 
     // Optionally add methods to modify stats
@@ -52,6 +64,7 @@ public class PlayerStats : MonoBehaviour
     public void Heal(int amount)
     {
         currentHealth += amount;
+        currentHealth = Mathf.Min(health, currentHealth); // Ensure health doesn't exceed max health
         Debug.Log($"Player healed {amount}. Current health: {currentHealth}");
     }
 
@@ -86,5 +99,23 @@ public class PlayerStats : MonoBehaviour
     {
         Debug.Log($"Player defended!");
         temporaryDefense += defense / 5;
+    }
+
+    // Fungsi untuk menyimpan health pemain
+    public void SaveHealth()
+    {
+        Debug.Log($"Saving Health: {currentHealth}");
+        PlayerPrefs.SetInt(HEALTH_KEY, currentHealth);
+        PlayerPrefs.Save();
+        Debug.Log($"Health Saved: {currentHealth}");
+    }
+
+    // Fungsi untuk menyimpan health pemain
+    public void SaveHealth()
+    {
+        Debug.Log($"Saving Health: {currentHealth}");
+        PlayerPrefs.SetInt(HEALTH_KEY, currentHealth);
+        PlayerPrefs.Save();
+        Debug.Log($"Health Saved: {currentHealth}");
     }
 }
